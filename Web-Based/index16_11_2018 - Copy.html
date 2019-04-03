@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+  overflow:hidden;
+   margin:0;
+   background-color:#2e87bf
+}
+
+text {
+  font-family: sans-serif;
+  pointer-events: none;
+}
+
+body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+.w3-row-padding img {margin-bottom: 12px}
+/* Set the width of the sidebar to 120px */
+.w3-sidebar {width: 300px;background: #222;}
+/* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
+#main {margin-left: 120px}
+/* Remove margins from "page content" on small screens */
+@media only screen and (max-width: 600px) {#main {margin-left: 0}}
+
+
+#apDiv1 {
+	position: absolute;
+	left: 388px;
+	top: 41px;
+	width: 1196px;
+	height: 510px;
+	z-index: 1;
+}
+#group_author {
+	position: absolute;
+	margin-top:auto;
+	width: 100%;
+	height: auto;
+	z-index: 1;
+	display:none;
+}
+#Expertise_type{
+	position: absolute;
+	margin-top:auto;
+	width: 100%;
+	height: auto;
+	z-index: 1;
+	display:none;
+}
+#venue_type{
+	position: absolute;
+	margin-top:auto;
+	width: 100%;
+	height: auto;
+	z-index: 1;
+	display:none;
+}
+#apDiv2 {
+	position: absolute;
+	left: 25%;
+	top: 35%;
+	width: 298px;
+	height: 234px;
+	z-index: 2;
+	display:block;
+}
+
+
+
+<!-------------------------->
+
+.container {
+  position: relative;
+  width: 50%;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+
+}
+
+.container:hover .overlay {
+  opacity: 1;
+
+
+}
+
+#more_w{
+	position: absolute;
+	left: 22%;
+	top: 78%;
+	width: 120px;
+	height: 120px;
+	z-index: 3;
+	display:none;
+}
+#more_q{
+	position: absolute;
+	left: 21.5%;
+	top: 91.5%;
+	width: 400px;
+	height: 120px;
+	z-index: 3;
+	display:none;
+}
+#bt_reset_graph {
+	position: absolute;
+	left: 85%;
+	top: 0px;
+	width: 221px;
+	height: 47px;
+	z-index: 4;
+	display:none;
+}
+.button {
+  background-color: #white; /* Green */
+  width:100%;
+  height:100%;
+  border: 12px;
+  color: #0068aa;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 12px;
+}
+.button_search {
+  background-color: #white; /* Green */
+  border: 12px;
+  width:70px;
+  height:30px;
+  color: #0068aa;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 12px;
+}
+.button1 {
+  background-color: #0068aa; 
+  color: white; 
+}
+
+.button1:hover {
+  background-color: white;
+  color: #0068aa;
+}
+#bt_co{
+	display:none
+}
+#bt_ex{
+	display:none
+}
+#bt_venue{
+	display:none
+}
+
+#popup {
+	background-color:#ffffcc;
+	border: 5px solid #ffffcc;	
+	border-radius: 15px;
+	position: absolute;
+	left: 388px;
+	top: 41px;
+	width: 300px;
+	height: auto;
+	z-index: 1;
+	display:none;
+}
+</style>
+<body>
+
+<script type="text/javascript" src="js_menu_coauthor.js"></script>
+<script type="text/javascript" src="js_Expertise.js"></script>
+<script type="text/javascript" src="js_venue.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+
+<div id="bt_reset_graph">
+<button id="bt_co" type="button" class="button button1" onclick="clear_text(); main_menu_co();">Restart graph</button>
+<button id="bt_ex" type="button" class="button button1" onclick="clear_text(); main_Expertise();">Restart graph</button>
+<button id="bt_venue" type="button" class="button button1" onclick="clear_text(); main_venue();">Restart graph</button>
+ </div>
+
+
+
+<div id="more_w" onmouseover="mouseOver_more()" onmouseout="mouseOut_more()">
+<img  id="image1_more" src="more.png" width="100%" height="100%" style="display:none;">
+<img  id="image2_more" src="more_e.png" width="100%" height="100%" style="display:none; " onClick="loadon()">
+</div>
+<div id="more_q">
+<p><font size="-1">Press to show more relation of the selected node</font><p>
+</div>
+
+
+
+
+
+
+<!-- <form name="form3" method="post" action="">
+  load
+    <input type="button" name="load" id="load" value="load" onClick="loadon()">
+</form> --->
+<div class="w3-sidebar w-Deep Orange" style="width:20%">
+  <br>
+  <div  align="center" style="color:#FFF; font-size:50px;">System</div>
+  <form name="form1" method="post" action="">
+    <p class="w3-blue">
+      <input name="CB" type="radio" id="Co_author" onClick="clear_text(); main_menu_co();">
+      <label for="Chexkbox_coAuthor"></label>
+      Co-author
+      <input type="radio" name="CB" id="Expertise" onClick="clear_text(); main_Expertise();">
+      <label for="Chexkbox_coAuthor"></label>
+      Expertise
+      <input type="radio" name="CB" id="Venue" onClick="clear_text(); main_venue();">
+      <label for="Chexkbox_coAuthor"></label>
+      Venue
+    </p>
+
+  </form>
+  <div class="ui-widget" align="center">
+    <input id="search" type="text" placeholder="">
+    <button id="search_bt" class="button_search button1" type="button" onclick="searchNode()">Search</button></div>
+  <p id="pls" align="center" style="color:#FFF; font-size:15px;">Details of the selected node</p>
+  <p id="demo"  align="left" style="color:#FFF; font-size:15px;"></p>
+
+</div>
+
+<!-- Page Content -->
+<div id="backgroud_c" style="margin-left:20%" >
+
+<div class="w3-container" style="background-color:#187fc0">
+  <h3  style="color:#FFF; font-weight:100;" id="top_text"><br>
+  </h3>
+</div>
+
+<div id="group_author" class="w3-container" style="background-color:#FFF">
+<img src="com.png"  style="width:20px"><font color=#66FF00> Computer science</font>
+<img src="bio.png"  style="width:20px"><font color=red> Biomedical</font>
+</div>
+
+<!----- Expertise ---->
+<div id="Expertise_type" class="w3-container" style="background-color:#FFF; display:none" > 
+<img src="com.png"  style="width:20px"><font color=#66FF00> Computer science</font>
+<img src="bio.png"  style="width:20px"><font color=red> Biomedical</font>
+<!---1--> <i class="fa fa-circle" style="font-size:24px; color:DarkCyan"><font size="3">Algorithms and data</font> </i>
+
+<!---2--> <i class="fa fa-circle" style="font-size:24px; color:DeepPink"><font size="3">Artificial intelligence</font></i>
+
+<!---3--> <i class="fa fa-circle" style="font-size:24px; color:LightSkyBlue"><font size="3">Computational science</font></i>
+
+<!---4--> <i class="fa fa-circle" style="font-size:24px; color:Pink"><font size="3">Computer architecture</font></i>
+
+<!---5--> <i class="fa fa-circle" style="font-size:24px; color:SandyBrown"><font size="3">Computer graphics</font></i>
+<br>
+<!---6--> <i class="fa fa-circle" style="font-size:24px; color:Plum"><font size="3">Computer security</font></i>
+
+<!---7--> <i class="fa fa-circle" style="font-size:24px; color:Purple"><font size="3">Concurrency(computer science)</font></i>
+
+<!---8--> <i class="fa fa-circle" style="font-size:24px; color:SaddleBrown"><font size="3">Database theory</font></i>
+
+<!---9--> <i class="fa fa-circle" style="font-size:24px; color:Khaki"><font size="3">Formal methods</font></i>
+
+<!---10--><i class="fa fa-circle" style="font-size:24px; color:IndianRed"><font size="3">Humanbased computation</font></i>
+
+<!---11--><i class="fa fa-circle" style="font-size:24px; color:DarkSeaGreen"><font size="3">Human computer interaction</font></i>
+
+<!---12--><i class="fa fa-circle" style="font-size:24px; color:SlateGray"><font size="3"> Operating systems</font></i>
+<br>
+<!---13--><i class="fa fa-circle" style="font-size:24px; color:PaleVioletRed"><font size="3">Mathematical optimization</font></i>
+
+<!---14--><i class="fa fa-circle" style="font-size:24px; color:Yellow"><font size="3">Programming language theory</font></i>
+
+<!---15--><i class="fa fa-circle" style="font-size:24px; color:Maroon"><font size="3">Software engineering</font></i>
+
+<!---16--><i class="fa fa-circle" style="font-size:24px; color:GoldenRod "><font size="3">Theoretical computer science</font></i>
+
+<!---17--><i class="fa fa-circle" style="font-size:24px; color:MediumSlateBlue"><font size="3">Theory of computation</font></i>
+
+<!---18--><i class="fa fa-circle" style="font-size:24px; color:blue"><font size="3">Other</font></i>
+</div> <!--<div id="Expertise_type" style="display:none">  -->
+
+
+<div id="venue_type" class="w3-container" style="background-color:#FFF; display:none" >
+<img src="com.png"  style="width:20px"><font color=#66FF00> Computer science</font>
+<img src="bio.png"  style="width:20px"><font color=red> Biomedical</font>
+<!---1--><i class="fa fa-circle" style="font-size:24px; color:blue"><font size="3">Venue</font></i>
+</div>
+<img src="howto.jpg" id="howto" style="width:100%">
+
+</div>
+
+
+<div id="apDiv2" onmouseover="mouseOver()" onmouseout="mouseOut()">
+ <form name="form2" method="post" >
+  <img  id="image1" src="start.png" alt="Avatar" width="100%" height="100%" style="display:block;">
+
+ <img id="image2" onClick="main_menu_co(); check();" src="start_ev.png" width="100%" height="100%"  style="display:none;" >
+</form>
+</div>
+
+
+<div id="popup"></div>
+<script>
+function mouseOver() {
+	document.getElementById("image1").style.display = "none";
+    document.getElementById("image2").style.display = "block";
+}
+
+function mouseOut() {
+    document.getElementById("image2").style.display = "none";
+	document.getElementById("image1").style.display = "block";
+}
+
+function mouseOver_more() {
+	document.getElementById("image1_more").style.display = "none";
+    document.getElementById("image2_more").style.display = "block";
+}
+
+function mouseOut_more() {
+    document.getElementById("image2_more").style.display = "none";
+	document.getElementById("image1_more").style.display = "block";
+}
+
+
+function check() {
+    document.getElementById("Co_author").checked = true;
+}
+
+function clear_text() {
+	document.getElementById("pls").innerHTML="Details of the selected node";
+    document.getElementById("demo").innerHTML="";
+}
+
+
+
+</script>
+
+</body>
